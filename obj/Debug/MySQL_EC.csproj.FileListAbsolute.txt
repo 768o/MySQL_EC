@@ -1,0 +1,8 @@
+E:\MySQL_EC\bin\Debug\MySQL_EC.exe.config
+E:\MySQL_EC\bin\Debug\MySQL_EC.exe
+E:\MySQL_EC\bin\Debug\MySQL_EC.pdb
+E:\MySQL_EC\bin\Debug\MySql.Data.dll
+E:\MySQL_EC\obj\Debug\MySQL_EC.exe
+E:\MySQL_EC\obj\Debug\MySQL_EC.pdb
+E:\MySQL_EC\bin\Debug\MySQL_EC.xml
+E:\MySQL_EC\obj\Debug\MySQL_EC.csprojResolveAssemblyReference.cache

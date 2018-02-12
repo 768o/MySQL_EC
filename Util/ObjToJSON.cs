@@ -7,8 +7,16 @@ using System.Web.Script.Serialization;
 
 namespace MySQL_EC
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class ObjToJSON
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public static string GetJSON(Object obj) {
             DataContractJsonSerializer serializer = new DataContractJsonSerializer(obj.GetType());
             Stream stream = new MemoryStream();
@@ -17,6 +25,11 @@ namespace MySQL_EC
             StreamReader streamReader = new StreamReader(stream);
             return streamReader.ReadToEnd();
         }
+        /// <summary>
+        /// 把DataTable转成json
+        /// </summary>
+        /// <param name="table"></param>
+        /// <returns></returns>
         public static string DataTableToJsonWithJavaScriptSerializer(DataTable table) { 
             JavaScriptSerializer jsSerializer = new JavaScriptSerializer();
             List<Dictionary<string, object>> parentRow = new List<Dictionary<string, object>>();

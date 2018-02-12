@@ -5,12 +5,18 @@ using System.Diagnostics;
 
 namespace MySQL_EC
 {
+    /// <summary>
+    /// 数据库工具类
+    /// </summary>
     public class MySqlHelper
     {
         //从配置文件读取连接字符串
         private static readonly string connstr = System.Configuration.ConfigurationManager.AppSettings["conn"];
 
-        //创建连接
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public static MySqlConnection CreateConnection()
         {
             MySqlConnection conn = new MySqlConnection(connstr);
@@ -21,7 +27,13 @@ namespace MySQL_EC
             catch { }
             return conn;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="conn"></param>
+        /// <param name="sql"></param>
+        /// <param name="parameters"></param>
+        /// <returns></returns>
         public static int ExecuteNonQuery(MySqlConnection conn, string sql, params MySqlParameter[] parameters)
         {
             using (MySqlCommand cmd = conn.CreateCommand())
@@ -31,7 +43,12 @@ namespace MySQL_EC
                 return cmd.ExecuteNonQuery();
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sql"></param>
+        /// <param name="parameters"></param>
+        /// <returns></returns>
         public static int ExecuteNonQuery(string sql, params MySqlParameter[] parameters)
         {
             using (MySqlConnection conn = CreateConnection())
@@ -39,7 +56,13 @@ namespace MySQL_EC
                 return ExecuteNonQuery(conn, sql, parameters);
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="conn"></param>
+        /// <param name="sql"></param>
+        /// <param name="parameters"></param>
+        /// <returns></returns>
         public static object ExecuteScalar(MySqlConnection conn, string sql, params MySqlParameter[] parameters)
         {
             using (MySqlCommand cmd = conn.CreateCommand())
@@ -49,7 +72,12 @@ namespace MySQL_EC
                 return cmd.ExecuteScalar();
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sql"></param>
+        /// <param name="parameters"></param>
+        /// <returns></returns>
         public static object ExecuteScalar(string sql, params MySqlParameter[] parameters)
         {
             using (MySqlConnection conn = CreateConnection())
@@ -57,7 +85,13 @@ namespace MySQL_EC
                 return ExecuteScalar(conn, sql, parameters);
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="conn"></param>
+        /// <param name="sql"></param>
+        /// <param name="parameters"></param>
+        /// <returns></returns>
         public static DataTable ExecuteQuery(MySqlConnection conn, string sql,params MySqlParameter[] parameters)
         {
             DataTable table = new DataTable();
@@ -78,7 +112,12 @@ namespace MySQL_EC
             }
             return table;
         }
-   
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sql"></param>
+        /// <param name="parameters"></param>
+        /// <returns></returns>
         public static DataTable ExecuteQuery(string sql, params MySqlParameter[] parameters)
         {
             using (MySqlConnection conn = CreateConnection())
