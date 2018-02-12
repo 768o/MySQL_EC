@@ -1,0 +1,8 @@
+C:\Users\huo\Desktop\整合\YGJCZF.Web\MySQL_EC\obj\Debug\MySQL_EC.csprojResolveAssemblyReference.cache
+C:\Users\huo\Desktop\整合\YGJCZF.Web\MySQL_EC\obj\Debug\MySQL_EC.csproj.CoreCompileInputs.cache
+C:\Users\huo\Desktop\整合\YGJCZF.Web\MySQL_EC\bin\Debug\MySQL_EC.pdb
+C:\Users\huo\Desktop\整合\YGJCZF.Web\MySQL_EC\bin\Debug\MySql.Data.dll
+C:\Users\huo\Desktop\整合\YGJCZF.Web\MySQL_EC\obj\Debug\MySQL_EC.pdb
+C:\Users\huo\Desktop\整合\YGJCZF.Web\MySQL_EC\bin\Debug\MySQL_EC.exe
+C:\Users\huo\Desktop\整合\YGJCZF.Web\MySQL_EC\obj\Debug\MySQL_EC.exe
+C:\Users\huo\Desktop\整合\YGJCZF.Web\MySQL_EC\bin\Debug\MySQL_EC.exe.config
