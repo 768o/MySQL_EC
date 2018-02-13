@@ -13,7 +13,8 @@ namespace MySQL_EC
         /// </summary>
         /// <param name="table_name">表名</param>
         /// <param name="Requirement_list">条件列表</param>
+        /// <param name="ShowFiled"></param>
         /// <returns>json</returns>
-        string Select(string table_name, List<SQLRequirement> Requirement_list);
+        string Select(string table_name, List<SQLRequirement> Requirement_list, string ShowFiled = "*");
     }
 }

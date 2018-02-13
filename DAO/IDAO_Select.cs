@@ -14,7 +14,8 @@ namespace MySQL_EC
         ///</summary> 
         ///<param name="table_name">查询表的名字</param>
         ///<param name="Requirement_list">查询表的条件列表<seealso cref="MySQL_EC.SQLRequirement">见SQLRequirement类</seealso></param>
+        ///<param name="ShowFiled"></param>
         ///<returns>返回查询的结果DateTable</returns>
-        DataTable Select(string table_name, List<SQLRequirement> Requirement_list);
+        DataTable Select(string table_name, List<SQLRequirement> Requirement_list, string ShowFiled);
     }
 }

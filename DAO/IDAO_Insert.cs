@@ -1,4 +1,5 @@
-﻿
+﻿using System.Collections.Generic;
+
 namespace MySQL_EC
 {
     ///<summary>
@@ -7,6 +8,6 @@ namespace MySQL_EC
     ///</summary> 
     interface IDAO_Insert
     {
-        bool Insert();
+        int Insert(string table_name, List<SQLRequirement> Requirement_list);
     }
 }

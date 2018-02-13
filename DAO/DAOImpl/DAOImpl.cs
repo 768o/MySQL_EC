@@ -15,12 +15,26 @@ namespace MySQL_EC
         /// 数据库插入操作的实现类
         /// </summary>
         /// <returns></returns>
-        public bool Insert()
+        public int Insert(string table_name, List<SQLRequirement> Requirement_list)
         {
-            throw new NotImplementedException();
+            StringBuilder filed = new StringBuilder();
+            StringBuilder value = new StringBuilder();
+            int list_count = Requirement_list.Count;
+            foreach (SQLRequirement requirement in Requirement_list)
+            {
+                filed.Append(requirement.Field);
+                value.Append(requirement.Value);
+                if (list_count-- > 1)
+                {
+                    filed.Append(",");
+                    value.Append(",");
+                }
+            }
+            string sql = String.Format("{0}{1}{2}{3}{4}", "insert into ", table_name, "(" + filed + ") ", "value", "(" + value + ")");
+            return MySqlHelper.ExecuteNonQuery(sql);
         }
         /// <summary>
-        /// 数据库删除操作的实现类
+        /// 
         /// </summary>
         /// <returns></returns>
         public bool Delete()
@@ -32,20 +46,21 @@ namespace MySQL_EC
         /// </summary>
         /// <param name="table_name">数据库表名</param>
         /// <param name="Requirement_list">查询条件列表<seealso cref="MySQL_EC.SQLRequirement">见SQLRequirement类</seealso></param>
+        /// <param name="ShowFiled">需要显示的字段</param>
         /// <returns>返回查询的结果DateTable</returns>
-        public DataTable Select(string table_name, List<SQLRequirement> Requirement_list)
+        public DataTable Select(string table_name, List<SQLRequirement> Requirement_list, string ShowFiled)
         {
-            StringBuilder requirements = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             int list_count = Requirement_list.Count;
             foreach (SQLRequirement requirement in Requirement_list)
             {
                string requirement_str = String.Format("{0}{1}{2}{3}{4}", requirement.Field, requirement.Mode,
-                    "'", requirement.Key, "'");
-                requirements.Append(requirement_str);
+                    "'", requirement.Value, "'");
+                sb.Append(requirement_str);
                 if (list_count-- > 1)
-                    requirements.Append(" and ");
+                    sb.Append(" and ");
             }
-            string sql = String.Format("{0}{1}{2}{3}", "select * from ", table_name, " where ", requirements);
+            string sql = String.Format("{0}{1}{2}{3}{4}{5}", "select ", ShowFiled, " from ", table_name, " where ", sb);
             return MySqlHelper.ExecuteQuery(sql);
         }
         /// <summary>

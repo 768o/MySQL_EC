@@ -24,6 +24,6 @@ namespace MySQL_EC
         /// 查询的关键字
         /// </summary>
         [DataMember]
-        public string Key { set; get; }
+        public string Value { set; get; }
     }
 }
