@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace MySQL_EC
 {
@@ -11,7 +13,7 @@ namespace MySQL_EC
     {
         IDAO dao = new DAOImpl();
         /// <summary>
-        /// 
+        /// 删除
         /// </summary>
         /// <returns></returns>
         public bool Delete()
@@ -26,13 +28,13 @@ namespace MySQL_EC
         /// <returns></returns>
         public int Insert(string table_name, List<SQLRequirement> Requirement_list)
         {
-            table_name = MySQLKeyWordCancel(table_name);
-            Requirement_list = MySQLKeyWordCancelPlus(Requirement_list);
+            string table_name_NoKey = MySQLKeyWordCancel(table_name);
+            List<SQLRequirement> Requirement_list_NoKey = MySQLKeyWordCancelPlus(Requirement_list);
 
-            return dao.Insert(table_name, Requirement_list);
+            return dao.Insert(table_name_NoKey, Requirement_list_NoKey);
         }
         /// <summary>
-        /// 
+        /// 查询
         /// </summary>
         /// <param name="table_name">表名</param>
         /// <param name="Requirement_list">条件</param>
@@ -40,14 +42,14 @@ namespace MySQL_EC
         /// <returns></returns>
         public string Select(string table_name, List<SQLRequirement> Requirement_list, string ShowFiled = "*")
         {
-            table_name = MySQLKeyWordCancel(table_name);
-            Requirement_list = MySQLKeyWordCancelPlus(Requirement_list);
+            string table_name_NoKey = MySQLKeyWordCancel(table_name);
+            List<SQLRequirement> Requirement_list_NoKey = MySQLKeyWordCancelPlus(Requirement_list);
 
-            DataTable datatable = dao.Select(table_name, Requirement_list, ShowFiled);
-            return ObjToJSON.DataTableToJsonWithJavaScriptSerializer(datatable);
+            DataTable datatable = dao.Select(table_name_NoKey, Requirement_list_NoKey, ShowFiled);
+            return ObjToJSON.DataTableToJsonWithJavaScriptSerializer(datatable);//DataTable转为Json
         }
         /// <summary>
-        /// 
+        /// 修改
         /// </summary>
         /// <returns></returns>
         public bool Update()
@@ -59,15 +61,21 @@ namespace MySQL_EC
         /// </summary>
         private List<SQLRequirement> MySQLKeyWordCancelPlus(List<SQLRequirement> Requirement_list)
         {
-            foreach (SQLRequirement requirement in Requirement_list)
+            //由于此处list是引用类型，需序列化复制一个list的副本，否则会改变list，导致语句错误
+            List<SQLRequirement> Requirement_list_NoKey = Requirement_list.Select(x => new SQLRequirement {
+                Field = x.Field,
+                Mode = x.Mode,
+                Value =x.Value,
+            }).ToList();
+            foreach (SQLRequirement requirement in Requirement_list_NoKey)
             {
                 requirement.Field = MySQLKeyWordCancel(requirement.Field);
-                //requirement.Value = MySQLKeyWordCancel(requirement.Value);
                 if ("like".Equals(requirement.Mode))
                     requirement.Value = "%" + requirement.Value + "%";
             }
-            return Requirement_list;
+            return Requirement_list_NoKey;
         }
+
         /// <summary>
         /// 避免你的字符是MySQL关键字
         /// </summary>

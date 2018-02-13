@@ -11,6 +11,7 @@ namespace MySQL_EC
     /// </summary>
     public class DAOImpl : IDAO
     {
+        enum Types { Insert, Delete, Update, Select};
         /// <summary>
         /// 数据库插入操作的实现类
         /// </summary>
@@ -30,15 +31,18 @@ namespace MySQL_EC
                     value.Append(",");
                 }
             }
-            string sql = String.Format("{0}{1}{2}{3}{4}", "insert into ", table_name, "(" + filed + ") ", "value", "(" + value + ")");
+            string sql = String.Format("{0}{1}{2}{3}{4}", GetOperaType(Types.Insert), table_name, "(" + filed + ") ", "values", "(" + value + ")");
             return MySqlHelper.ExecuteNonQuery(sql);
         }
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        public bool Delete()
+        public int Delete(string table_name, List<SQLRequirement> Requirement_list)
         {
+            string where = GetWhere(Requirement_list);
+            string sql = String.Format("{0}{1}{2}", GetOperaType(Types.Delete), table_name, where);
+            return MySqlHelper.ExecuteNonQuery(sql);
             throw new NotImplementedException();
         }
         /// <summary>
@@ -50,17 +54,8 @@ namespace MySQL_EC
         /// <returns>返回查询的结果DateTable</returns>
         public DataTable Select(string table_name, List<SQLRequirement> Requirement_list, string ShowFiled)
         {
-            StringBuilder sb = new StringBuilder();
-            int list_count = Requirement_list.Count;
-            foreach (SQLRequirement requirement in Requirement_list)
-            {
-               string requirement_str = String.Format("{0}{1}{2}{3}{4}", requirement.Field, requirement.Mode,
-                    "'", requirement.Value, "'");
-                sb.Append(requirement_str);
-                if (list_count-- > 1)
-                    sb.Append(" and ");
-            }
-            string sql = String.Format("{0}{1}{2}{3}{4}{5}", "select ", ShowFiled, " from ", table_name, " where ", sb);
+            string where = GetWhere(Requirement_list);
+            string sql = String.Format("{0}{1}{2}", GetOperaType(Types.Select, ShowFiled) , table_name, where);
             return MySqlHelper.ExecuteQuery(sql);
         }
         /// <summary>
@@ -71,6 +66,43 @@ namespace MySQL_EC
         {
             throw new NotImplementedException();
         }
-
+        private string GetOperaType(Types type,string ShowFiled = null) {
+            string OperaType = null;
+            switch (type) {
+                case Types.Insert:
+                    OperaType = "insert into ";
+                    break;
+                case Types.Delete:
+                    OperaType = "delete ";
+                    break;
+                case Types.Update:
+                    break;
+                case Types.Select:
+                    OperaType = "select " + ShowFiled + " from ";
+                    break;
+                default:
+                    break;
+            }
+            return OperaType;
+        }
+        /// <summary>
+        /// 获得更新，查询，删除的where字符串
+        /// </summary>
+        /// <param name="Requirement_list"></param>
+        /// <returns></returns>
+        private string GetWhere(List<SQLRequirement> Requirement_list) {
+            StringBuilder sb = new StringBuilder();
+            sb.Append(" where ");
+            int list_count = Requirement_list.Count;
+            foreach (SQLRequirement requirement in Requirement_list)
+            {
+                string requirement_str = String.Format("{0}{1}{2}{3}{4}", requirement.Field, requirement.Mode,
+                     " '", requirement.Value, "' ");
+                sb.Append(requirement_str);
+                if (list_count-- > 1)
+                    sb.Append(" and ");
+            }
+            return sb.ToString();
+        }
     }
 }
