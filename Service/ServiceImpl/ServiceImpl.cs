@@ -16,9 +16,12 @@ namespace MySQL_EC
         /// 删除
         /// </summary>
         /// <returns></returns>
-        public bool Delete()
+        public int Delete(string table_name, List<SQLRequirement> Requirement_list)
         {
-            throw new NotImplementedException();
+            string table_name_NoKey = MySQLKeyWordCancel(table_name);
+            List<SQLRequirement> Requirement_list_NoKey = MySQLKeyWordCancelPlus(Requirement_list);
+
+            return dao.Delete(table_name_NoKey, Requirement_list_NoKey);
         }
         /// <summary>
         /// 
@@ -44,17 +47,22 @@ namespace MySQL_EC
         {
             string table_name_NoKey = MySQLKeyWordCancel(table_name);
             List<SQLRequirement> Requirement_list_NoKey = MySQLKeyWordCancelPlus(Requirement_list);
+            string ShowFiled_NoKey = "*".Equals(ShowFiled) ? "*" : MySQLKeyWordCancelPlus(ShowFiled);
 
-            DataTable datatable = dao.Select(table_name_NoKey, Requirement_list_NoKey, ShowFiled);
+            DataTable datatable = dao.Select(table_name_NoKey, Requirement_list_NoKey, ShowFiled_NoKey);
             return ObjToJSON.DataTableToJsonWithJavaScriptSerializer(datatable);//DataTable转为Json
         }
         /// <summary>
         /// 修改
         /// </summary>
         /// <returns></returns>
-        public bool Update()
+        public int Update(string table_name, List<SQLRequirement> Set_list, List<SQLRequirement> Requirement_list)
         {
-            throw new NotImplementedException();
+            string table_name_NoKey = MySQLKeyWordCancel(table_name);
+            List<SQLRequirement> Set_list_NoKey = MySQLKeyWordCancelPlus(Set_list);
+            List<SQLRequirement> Requirement_list_NoKey = MySQLKeyWordCancelPlus(Requirement_list);
+
+            return dao.Update(table_name_NoKey, Set_list_NoKey, Requirement_list_NoKey);
         }
         /// <summary>
         /// 避免你的list内容里面存在MySQL关键字
@@ -75,7 +83,10 @@ namespace MySQL_EC
             }
             return Requirement_list_NoKey;
         }
-
+        private string MySQLKeyWordCancelPlus(string ShowFiled)
+        {
+            return "`" + ShowFiled.Replace(",", "`,`") + "`";
+        }
         /// <summary>
         /// 避免你的字符是MySQL关键字
         /// </summary>

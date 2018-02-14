@@ -1,4 +1,6 @@
 ﻿
+using System.Collections.Generic;
+
 namespace MySQL_EC
 {
     /// <summary>
@@ -10,6 +12,6 @@ namespace MySQL_EC
         /// 
         /// </summary>
         /// <returns></returns>
-        bool Update();
+        int Update(string table_name, List<SQLRequirement> Set_list, List<SQLRequirement> Requirement_list);
     }
 }

@@ -1,0 +1,283 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MySQL_EC</name>
+    </assembly>
+    <members>
+        <member name="T:MySQL_EC.DAOImpl">
+            <summary>
+            IDAO的实现类
+            </summary>
+        </member>
+        <member name="M:MySQL_EC.DAOImpl.Insert(System.String,System.Collections.Generic.List{MySQL_EC.SQLRequirement})">
+            <summary>
+            数据库插入操作的实现类
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MySQL_EC.DAOImpl.Delete(System.String,System.Collections.Generic.List{MySQL_EC.SQLRequirement})">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MySQL_EC.DAOImpl.Select(System.String,System.Collections.Generic.List{MySQL_EC.SQLRequirement},System.String)">
+            <summary>
+            数据库查询操作的实现类
+            </summary>
+            <param name="table_name">数据库表名</param>
+            <param name="Requirement_list">查询条件列表<seealso cref="T:MySQL_EC.SQLRequirement">见SQLRequirement类</seealso></param>
+            <param name="ShowFiled">需要显示的字段</param>
+            <returns>返回查询的结果DateTable</returns>
+        </member>
+        <member name="M:MySQL_EC.DAOImpl.Update(System.String,System.Collections.Generic.List{MySQL_EC.SQLRequirement},System.Collections.Generic.List{MySQL_EC.SQLRequirement})">
+            <summary>
+            数据库更新操作的实现类
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MySQL_EC.DAOImpl.GetRequirement(System.Collections.Generic.List{MySQL_EC.SQLRequirement},System.String)">
+            <summary>
+            获得更新，查询，删除的where字符串
+            </summary>
+            <param name="Requirement_list"></param>
+            <param name="s"></param>
+            <returns></returns>
+        </member>
+        <member name="T:MySQL_EC.IDAO_Delete">
+            <summary>
+            interface<c>IDAO_Delete</c>
+            用来对数据库进行删除相关操作
+            </summary> 
+        </member>
+        <member name="T:MySQL_EC.IDAO_Insert">
+            <summary>
+            interface<c>IDAO_Insert</c>
+            用来对数据库进行添加相关操作
+            </summary> 
+        </member>
+        <member name="T:MySQL_EC.IDAO_Select">
+            <summary>
+            interface<c>IDAO_Select</c>
+            用来对数据库进行查询相关操作
+            </summary> 
+        </member>
+        <member name="M:MySQL_EC.IDAO_Select.Select(System.String,System.Collections.Generic.List{MySQL_EC.SQLRequirement},System.String)">
+            <summary>
+            查询的方法
+            </summary> 
+            <param name="table_name">查询表的名字</param>
+            <param name="Requirement_list">查询表的条件列表<seealso cref="T:MySQL_EC.SQLRequirement">见SQLRequirement类</seealso></param>
+            <param name="ShowFiled"></param>
+            <returns>返回查询的结果DateTable</returns>
+        </member>
+        <member name="T:MySQL_EC.IDAO_Update">
+            <summary>
+            interface<c>IDAO_Update</c>
+            用来对数据库进行更新相关操作
+            </summary> 
+        </member>
+        <member name="T:MySQL_EC.SQLRequirement">
+            <summary>
+            class<c>SQLRequirement</c>
+            对数据库查询条件进行封装
+            </summary> 
+        </member>
+        <member name="P:MySQL_EC.SQLRequirement.Field">
+            <summary>
+            查询的字段
+            </summary>
+        </member>
+        <member name="P:MySQL_EC.SQLRequirement.Mode">
+            <summary>
+            查询的模式，equal或like
+            </summary>
+        </member>
+        <member name="P:MySQL_EC.SQLRequirement.Value">
+            <summary>
+            查询的关键字
+            </summary>
+        </member>
+        <member name="T:MySQL_EC.IService">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:MySQL_EC.IService_Delete">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:MySQL_EC.IService_Delete.Delete(System.String,System.Collections.Generic.List{MySQL_EC.SQLRequirement})">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:MySQL_EC.IService_Insert">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:MySQL_EC.IService_Insert.Insert(System.String,System.Collections.Generic.List{MySQL_EC.SQLRequirement})">
+            <summary>
+            
+            </summary>
+            <param name="table_name"></param>
+            <param name="Requirement_list"></param>
+            <returns></returns>
+        </member>
+        <member name="T:MySQL_EC.IService_Select">
+            <summary>
+            查询相关
+            </summary>
+        </member>
+        <member name="M:MySQL_EC.IService_Select.Select(System.String,System.Collections.Generic.List{MySQL_EC.SQLRequirement},System.String)">
+            <summary>
+            查询的方法
+            </summary>
+            <param name="table_name">表名</param>
+            <param name="Requirement_list">条件列表</param>
+            <param name="ShowFiled"></param>
+            <returns>json</returns>
+        </member>
+        <member name="T:MySQL_EC.IService_Update">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:MySQL_EC.IService_Update.Update(System.String,System.Collections.Generic.List{MySQL_EC.SQLRequirement},System.Collections.Generic.List{MySQL_EC.SQLRequirement})">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:MySQL_EC.ServiceImpl">
+            <summary>
+            确保传入数据与传出数据的规范
+            </summary>
+        </member>
+        <member name="M:MySQL_EC.ServiceImpl.Delete(System.String,System.Collections.Generic.List{MySQL_EC.SQLRequirement})">
+            <summary>
+            删除
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MySQL_EC.ServiceImpl.Insert(System.String,System.Collections.Generic.List{MySQL_EC.SQLRequirement})">
+            <summary>
+            
+            </summary>
+            <param name="table_name"></param>
+            <param name="Requirement_list"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MySQL_EC.ServiceImpl.Select(System.String,System.Collections.Generic.List{MySQL_EC.SQLRequirement},System.String)">
+            <summary>
+            查询
+            </summary>
+            <param name="table_name">表名</param>
+            <param name="Requirement_list">条件</param>
+            <param name="ShowFiled">需要显示的字段，默认为*</param>
+            <returns></returns>
+        </member>
+        <member name="M:MySQL_EC.ServiceImpl.Update(System.String,System.Collections.Generic.List{MySQL_EC.SQLRequirement},System.Collections.Generic.List{MySQL_EC.SQLRequirement})">
+            <summary>
+            修改
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MySQL_EC.ServiceImpl.MySQLKeyWordCancelPlus(System.Collections.Generic.List{MySQL_EC.SQLRequirement})">
+            <summary>
+            避免你的list内容里面存在MySQL关键字
+            </summary>
+        </member>
+        <member name="M:MySQL_EC.ServiceImpl.MySQLKeyWordCancel(System.String)">
+            <summary>
+            避免你的字符是MySQL关键字
+            </summary>
+            <param name="MaybeMySQLKeyWord">可能是关键字的字符串</param>
+            <returns>加了``转移字符的字符串</returns>
+        </member>
+        <member name="T:MySQL_EC.MySqlHelper">
+            <summary>
+            数据库工具类
+            </summary>
+        </member>
+        <member name="M:MySQL_EC.MySqlHelper.CreateConnection">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MySQL_EC.MySqlHelper.ExecuteNonQuery(MySql.Data.MySqlClient.MySqlConnection,System.String,MySql.Data.MySqlClient.MySqlParameter[])">
+            <summary>
+            
+            </summary>
+            <param name="conn"></param>
+            <param name="sql"></param>
+            <param name="parameters"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MySQL_EC.MySqlHelper.ExecuteNonQuery(System.String,MySql.Data.MySqlClient.MySqlParameter[])">
+            <summary>
+            
+            </summary>
+            <param name="sql"></param>
+            <param name="parameters"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MySQL_EC.MySqlHelper.ExecuteScalar(MySql.Data.MySqlClient.MySqlConnection,System.String,MySql.Data.MySqlClient.MySqlParameter[])">
+            <summary>
+            
+            </summary>
+            <param name="conn"></param>
+            <param name="sql"></param>
+            <param name="parameters"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MySQL_EC.MySqlHelper.ExecuteScalar(System.String,MySql.Data.MySqlClient.MySqlParameter[])">
+            <summary>
+            
+            </summary>
+            <param name="sql"></param>
+            <param name="parameters"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MySQL_EC.MySqlHelper.ExecuteQuery(MySql.Data.MySqlClient.MySqlConnection,System.String,MySql.Data.MySqlClient.MySqlParameter[])">
+            <summary>
+            
+            </summary>
+            <param name="conn"></param>
+            <param name="sql"></param>
+            <param name="parameters"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MySQL_EC.MySqlHelper.ExecuteQuery(System.String,MySql.Data.MySqlClient.MySqlParameter[])">
+            <summary>
+            
+            </summary>
+            <param name="sql"></param>
+            <param name="parameters"></param>
+            <returns></returns>
+        </member>
+        <member name="T:MySQL_EC.ObjToJSON">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:MySQL_EC.ObjToJSON.GetJSON(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MySQL_EC.ObjToJSON.DataTableToJsonWithJavaScriptSerializer(System.Data.DataTable)">
+            <summary>
+            把DataTable转成json
+            </summary>
+            <param name="table"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

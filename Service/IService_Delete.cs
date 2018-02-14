@@ -1,4 +1,6 @@
 ﻿
+using System.Collections.Generic;
+
 namespace MySQL_EC
 {
     /// <summary>
@@ -10,6 +12,6 @@ namespace MySQL_EC
         /// 
         /// </summary>
         /// <returns></returns>
-        bool Delete();
+        int Delete(string table_name, List<SQLRequirement> Requirement_list);
     }
 }

@@ -1,4 +1,6 @@
 ﻿
+using System.Collections.Generic;
+
 namespace MySQL_EC
 {
     ///<summary>
@@ -7,6 +9,6 @@ namespace MySQL_EC
     ///</summary> 
     interface IDAO_Update
     {
-        bool Update();
+        int Update(string table_name, List<SQLRequirement> Set_list, List<SQLRequirement> Requirement_list);
     }
 }

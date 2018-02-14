@@ -40,7 +40,7 @@ namespace MySQL_EC
         /// <returns></returns>
         public int Delete(string table_name, List<SQLRequirement> Requirement_list)
         {
-            string where = GetWhere(Requirement_list);
+            string where = GetRequirement(Requirement_list);
             string sql = String.Format("{0}{1}{2}", GetOperaType(Types.Delete), table_name, where);
             return MySqlHelper.ExecuteNonQuery(sql);
             throw new NotImplementedException();
@@ -54,18 +54,29 @@ namespace MySQL_EC
         /// <returns>返回查询的结果DateTable</returns>
         public DataTable Select(string table_name, List<SQLRequirement> Requirement_list, string ShowFiled)
         {
-            string where = GetWhere(Requirement_list);
+            string where = GetRequirement(Requirement_list);
             string sql = String.Format("{0}{1}{2}", GetOperaType(Types.Select, ShowFiled) , table_name, where);
             return MySqlHelper.ExecuteQuery(sql);
         }
+
         /// <summary>
         /// 数据库更新操作的实现类
         /// </summary>
         /// <returns></returns>
-        public bool Update()
+        public int Update(string table_name, List<SQLRequirement> Set_list, List<SQLRequirement> Requirement_list)
         {
-            throw new NotImplementedException();
+            string set = GetRequirement(Set_list, "set");
+            string where = GetRequirement(Requirement_list);
+            string sql = String.Format("{0}{1}{2}{3}", GetOperaType(Types.Update), table_name, set, where);
+            return MySqlHelper.ExecuteNonQuery(sql);
+            //update table set xxx == xxx where xxx=xxx;
         }
+        /// <summary>
+        /// 获得操作类型，几增删改查
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="ShowFiled"></param>
+        /// <returns></returns>
         private string GetOperaType(Types type,string ShowFiled = null) {
             string OperaType = null;
             switch (type) {
@@ -73,9 +84,10 @@ namespace MySQL_EC
                     OperaType = "insert into ";
                     break;
                 case Types.Delete:
-                    OperaType = "delete ";
+                    OperaType = "delete from";
                     break;
                 case Types.Update:
+                    OperaType = "update ";
                     break;
                 case Types.Select:
                     OperaType = "select " + ShowFiled + " from ";
@@ -86,13 +98,15 @@ namespace MySQL_EC
             return OperaType;
         }
         /// <summary>
-        /// 获得更新，查询，删除的where字符串
+        /// 获得更新，查询，删除的where or set字符串
         /// </summary>
         /// <param name="Requirement_list"></param>
+        /// <param name="s"></param>
         /// <returns></returns>
-        private string GetWhere(List<SQLRequirement> Requirement_list) {
+        private string GetRequirement(List<SQLRequirement> Requirement_list, string s = "where") {
             StringBuilder sb = new StringBuilder();
-            sb.Append(" where ");
+            s = " " + s + " ";
+            sb.Append(s);
             int list_count = Requirement_list.Count;
             foreach (SQLRequirement requirement in Requirement_list)
             {
