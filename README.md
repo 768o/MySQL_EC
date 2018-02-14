@@ -36,9 +36,9 @@ int c = service.Delete("table", delete);
 List<SQLRequirement> update_where = new List<SQLRequirement> {
     new SQLRequirement{ Field = "id", Mode = "=", Value = "1" },
 };
-    List<SQLRequirement> update_set = new List<SQLRequirement> {
-    new SQLRequirement{ Field = "number", Mode = "=", Value = "2" },
-    };
+List<SQLRequirement> update_set = new List<SQLRequirement> {
+	new SQLRequirement{ Field = "number", Mode = "=", Value = "2" },
+};
 int d = service.Update("table", update_set, update_where);
 </code></pre>
 #### 4.查询数据
