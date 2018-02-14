@@ -12,7 +12,7 @@ MySQL_EC基于MYSQL数据库的只支持简单SQL操作的的插件
 ## 功能
 
 #### 1.添加数据
-添加了 id number table 分别为 1 table 77 的数据。<BR>
+例子：添加了 id number table 分别为 1 table 77 的数据。<BR>
 <pre><code>
 List<SQLRequirement> update = new List<SQLRequirement> {
     new SQLRequirement{ Field = "id", Value = "1" },
@@ -22,7 +22,7 @@ List<SQLRequirement> update = new List<SQLRequirement> {
 int b = service.Insert("table",update);
 </code></pre>
 #### 2.删除数据
-删除了id=1 and number = 1 的项。<BR>
+例子：删除了id=1 and number = 1 的项。<BR>
 <pre><code>
 List<SQLRequirement> delete = new List<SQLRequirement> {
     new SQLRequirement{ Field = "id", Mode = "=", Value = "1"},
@@ -31,7 +31,7 @@ List<SQLRequirement> delete = new List<SQLRequirement> {
 int c = service.Delete("table", delete);
 </code></pre>
 #### 3.修改数据
-把id=1的项中的number设置成2<BR>
+例子：把id=1的项中的number设置成2<BR>
 <pre><code>
 List<SQLRequirement> update_where = new List<SQLRequirement> {
     new SQLRequirement{ Field = "id", Mode = "=", Value = "1" },
@@ -42,12 +42,14 @@ List<SQLRequirement> update_where = new List<SQLRequirement> {
 int d = service.Update("table", update_set, update_where);
 </code></pre>
 #### 4.查询数据
-相当于 select id,number,name from table where id like '%1%' and number = 2;<BR>
+例子：相当于 select id,number,name from table where id like '%1%' and number = 2;<BR>
+<pre><code>
 List<SQLRequirement> select = new List<SQLRequirement> {
     new SQLRequirement{ Field = "id",Mode = "like", Value = "1" },
     new SQLRequirement{ Field = "number",Mode = "=", Value = "2" },
 };
 string a = service.Select("table", select,"id,number,name");
+</code></pre>
 ##### 配置数据库 app.config 设置
 <pre><code>&lt;appSettings&gt;
 &lt;add key="conn" value="server=server;Database=Database;User Id=Id;Password=Password"&gt;
