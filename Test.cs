@@ -29,7 +29,7 @@ namespace MySQL_EC
             //-----------------------------------------------------------------以上INSERT
             List<SQLRequirement> delete = new List<SQLRequirement> {
                 new SQLRequirement{ Field = "id", Mode = "=", Value = "1"},
-                new SQLRequirement{ Field = "nunber", Mode = "=", Value = "1" },
+                new SQLRequirement{ Field = "number", Mode = "=", Value = "1" },
             };
             int c = service.Delete("table", delete);
             Console.WriteLine(c);
