@@ -1,0 +1,9 @@
+C:\Users\huo\Desktop\MySQL_EC-master\obj\Debug\MySQL_EC.csproj.CoreCompileInputs.cache
+C:\Users\huo\Desktop\MySQL_EC-master\bin\Debug\MySQL_EC.xml
+C:\Users\huo\Desktop\MySQL_EC-master\bin\Debug\MySQL_EC.pdb
+C:\Users\huo\Desktop\MySQL_EC-master\bin\Debug\MySql.Data.dll
+C:\Users\huo\Desktop\MySQL_EC-master\bin\Debug\MySql.Data.xml
+C:\Users\huo\Desktop\MySQL_EC-master\obj\Debug\MySQL_EC.pdb
+C:\Users\huo\Desktop\MySQL_EC-master\bin\Debug\MySQL_EC.dll.config
+C:\Users\huo\Desktop\MySQL_EC-master\bin\Debug\MySQL_EC.dll
+C:\Users\huo\Desktop\MySQL_EC-master\obj\Debug\MySQL_EC.dll

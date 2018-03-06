@@ -100,19 +100,26 @@ namespace MySQL_EC
         /// <param name="whereorset"> 数据的位置whereorset </param>
         /// <returns> 拼接之后的set，where语句 </returns>
         private string GetRequirement(List<SQLRequirement> Requirement_list, string whereorset = "where") {
-            StringBuilder sb = new StringBuilder();
-            whereorset = " " + whereorset + " ";
-            sb.Append(whereorset);
-            int list_count = Requirement_list.Count;
-            foreach (SQLRequirement requirement in Requirement_list)
+            if (Requirement_list != null)
             {
-                string requirement_str = String.Format("{0}{1}{2}{3}{4}", requirement.Field, requirement.Mode,
-                     " '", requirement.Value, "' ");
-                sb.Append(requirement_str);
-                if (list_count-- > 1)
-                    sb.Append(" and ");
+                StringBuilder sb = new StringBuilder();
+                whereorset = " " + whereorset + " ";
+                sb.Append(whereorset);
+                int list_count = Requirement_list.Count;
+                foreach (SQLRequirement requirement in Requirement_list)
+                {
+                    string requirement_str = String.Format("{0}{1}{2}{3}{4}", requirement.Field, requirement.Mode,
+                         " '", requirement.Value, "' ");
+                    sb.Append(requirement_str);
+                    if (list_count-- > 1)
+                        sb.Append(" and ");
+                }
+                return sb.ToString();
             }
-            return sb.ToString();
+            else
+            {
+                return " ";
+            }
         }
     }
 }

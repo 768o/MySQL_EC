@@ -11,12 +11,13 @@ namespace MySQL_EC
 
             List<SQLRequirement> select = new List<SQLRequirement> {
                 new SQLRequirement{ Field = "id",Mode = "like", Value = "" },
-                new SQLRequirement{ Field = "number",Mode = "=", Value = "88888" },
             };
             //相当于 select id,number,name from table where id like '%%' and number = A5;
-            string a = service.Select("table", select,"id,number,name");
-            //默认为*
-             string a1 = service.Select("table", select);
+            string a = service.Select("table", select, null ,"id,number");
+            //相当于select * from table
+            //第一个null为where
+            //第二个null为sort
+            string a1 = service.Select("table", null, "number asc");
             //-----------------------------------------------------------------以上SELECT
             //如果value中有关键字，用''不然有错
             //List<SQLRequirement> update = new List<SQLRequirement> {
@@ -27,21 +28,21 @@ namespace MySQL_EC
             //int b = service.Insert("table",update);
             //Console.Write(b);
             //-----------------------------------------------------------------以上INSERT
-            List<SQLRequirement> delete = new List<SQLRequirement> {
-                new SQLRequirement{ Field = "id", Mode = "=", Value = "1"},
-                new SQLRequirement{ Field = "number", Mode = "=", Value = "1" },
-            };
-            int c = service.Delete("table", delete);
-            Console.WriteLine(c);
-            //-----------------------------------------------------------------以上DELETE
-            List<SQLRequirement> update_where = new List<SQLRequirement> {
-                new SQLRequirement{ Field = "id", Mode = "=", Value = "91887" },
-            };
-            List<SQLRequirement> update_set = new List<SQLRequirement> {
-                new SQLRequirement{ Field = "number", Mode = "=", Value = "99999" },
-            };
-            int d = service.Update("table", update_set, update_where);
-            Console.WriteLine(d);
+            //List<SQLRequirement> delete = new List<SQLRequirement> {
+            //    new SQLRequirement{ Field = "id", Mode = "=", Value = "1"},
+            //    new SQLRequirement{ Field = "number", Mode = "=", Value = "1" },
+            //};
+            //int c = service.Delete("table", delete);
+            //Console.WriteLine(c);
+            ////-----------------------------------------------------------------以上DELETE
+            //List<SQLRequirement> update_where = new List<SQLRequirement> {
+            //    new SQLRequirement{ Field = "id", Mode = "=", Value = "91887" },
+            //};
+            //List<SQLRequirement> update_set = new List<SQLRequirement> {
+            //    new SQLRequirement{ Field = "number", Mode = "=", Value = "99999" },
+            //};
+            //int d = service.Update("table", update_set, update_where);
+            //Console.WriteLine(d);
             //-----------------------------------------------------------------以上UPDATE
 
             Console.WriteLine(a);

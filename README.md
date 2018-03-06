@@ -11,6 +11,10 @@ MySQL_EC基于MYSQL数据库的只支持简单SQL操作的的插件
 
 ## 功能
 
+### 0.使用前
+1.导入MySQL_EC.dll <BR>
+2.对象IService service = new ServiceImpl();
+
 #### 1.添加数据
 例子：添加了 id number table 分别为 1 table 77 的数据。<BR>
 <pre><code>
@@ -42,13 +46,21 @@ List<SQLRequirement> update_set = new List<SQLRequirement> {
 int d = service.Update("table", update_set, update_where);
 </code></pre>
 #### 4.查询数据
-例子：相当于 select id,number,name from table where id like '%1%' and number = 2;<BR>
+例子1：相当于 select id,number,name from table where id like '%1%' and number = 2;<BR>
 <pre><code>
 List<SQLRequirement> select = new List<SQLRequirement> {
     new SQLRequirement{ Field = "id",Mode = "like", Value = "1" },
     new SQLRequirement{ Field = "number",Mode = "=", Value = "2" },
 };
-string a = service.Select("table", select,"id,number,name");
+string a = service.Select("table", select, null, "id,number,name");
+</code></pre>
+例子2：相当于 select id,number,name from table<BR>
+<pre><code>
+string a = service.Select("table", null , null "id,number,name");
+</code></pre>
+例子3：相当于 select id,number,name from table order by id asc<BR>
+<pre><code>
+string a = service.Select("table", null , "id asc", "id,number,name");
 </code></pre>
 ##### 配置数据库 app.config 设置
 <pre><code>&lt;appSettings&gt;

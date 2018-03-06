@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MySQL_EC</RootNamespace>
     <AssemblyName>MySQL_EC</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -71,6 +71,7 @@
     <Compile Include="Service\ServiceImpl\ServiceImpl.cs" />
     <Compile Include="Util\MySqlHelper.cs" />
     <Compile Include="Util\ObjToJSON.cs" />
+    <Compile Include="Util\ServiceSingle.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
