@@ -45,6 +45,7 @@
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -72,6 +73,7 @@
     <Compile Include="Util\MySqlHelper.cs" />
     <Compile Include="Util\ObjToJSON.cs" />
     <Compile Include="Util\ServiceSingle.cs" />
+    <Compile Include="Util\Web_SQL.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -324,5 +324,17 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:MySQL_EC.Util.Web_SQL">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:MySQL_EC.Util.Web_SQL.GetSelect(System.Web.HttpRequestBase)">
+            <summary>
+            
+            </summary>
+            <param name="Request"></param>
+            <returns></returns>
+        </member>
     </members>
 </doc>
