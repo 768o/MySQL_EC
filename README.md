@@ -1,5 +1,6 @@
 # MySQL_EC
-MySQL_EC基于MYSQL数据库的只支持简单SQL操作的的插件
+MySQL_EC基于MYSQL数据库的只支持简单SQL操作的的插件  
+并不推荐你使用，因为没有对注入进行限制。
 
 ## 优点
 1.把SQL语句简单化，可以快速得得到我们需要的SQL语句<BR>
